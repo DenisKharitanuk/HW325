@@ -25,6 +25,7 @@ public class BoundaryServiceTest {
         OptionalInt min = OptionalInt.of(boundaryService.findMin(arr));
         OptionalInt exp = stream(arr).min();
         assertEquals(exp, min);
+
     }
 
 }

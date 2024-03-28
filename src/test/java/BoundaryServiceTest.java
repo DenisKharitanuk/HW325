@@ -12,20 +12,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BoundaryServiceTest {
     private final BoundaryService boundaryService = new BoundaryService();
+    private static Stream<int[]> arrays() {
+       return Stream.of((new int[]{3, 15, 0}), (new int[]{6,4, 3}), (new int[]{88, 3, -1}), (new int[]{3, 2, 12}));
+   }
 
-//    private static Stream<int[]> arrays() {
-//        return Stream.of((new int[]{3, 15, 0}), (new int[]{6,4, 3}), (new int[]{88, 3, -1}), (new int[]{3, 2, 12}));
-//    }
-//
-//    @ParameterizedTest(name = "Array test  {0}")
-//    @DisplayName("Finding the minimum element in an array")
-//    @Description("Minimum array element found")
-//    @MethodSource("arrays")
-//    public void findMinElementInArray(int[] arr) {
-//        OptionalInt min = OptionalInt.of(boundaryService.findMin(arr));
-//        OptionalInt exp = stream(arr).min();
-//        assertEquals(exp, min);
-//
-//    }
+   @ParameterizedTest(name = "Array test  {0}")
+   @DisplayName("Finding the minimum element in an array")
+   @Description("Minimum array element found")
+   @MethodSource("arrays")
+    public void findMinElementInArray(int[] arr) {
+        OptionalInt min = OptionalInt.of(boundaryService.findMin(arr));
+        OptionalInt exp = stream(arr).min();
+        assertEquals(exp, min);
+
+    }
 
 }

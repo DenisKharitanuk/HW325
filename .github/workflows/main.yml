@@ -4,35 +4,33 @@ name: HW 325
 
 on:
   push:
-    branches: [ master ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ master ]
+    branches: [ "master" ]
 
 jobs:
-  build-and-deploy:
+  build:
+
     runs-on: ubuntu-latest
-    
 
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
-        with:
-          persist-credentials: false
 
-      - name: Install 🔧
-        run: npm install
+    - uses: actions/checkout@v3
 
-      - name: Run Test 🔨
-        run: npm run test
+    - name: Build
+      run: gradle build
+    
+    - name: Test
+      run: gradle test
+     
+    - name: Coverage Verification
+      run: gradle jacocoTestCoverageVerification
 
-      - name: Build 👷
-        run: npm run build
+    - name: Build
+      run: gradle build
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-
-          GITHUB_TOKEN: ${{ secrets.KEY }}
-          BRANCH: gh-pages
-          FOLDER: public
-          CLEAN: true
+    - name: Report Code Coverage
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage-report
+        path: build/reports

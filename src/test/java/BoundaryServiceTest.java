@@ -14,7 +14,7 @@ public class BoundaryServiceTest {
     private final BoundaryService boundaryService = new BoundaryService();
 
     private static Stream<int[]> arrays() {
-        return Stream.of((new int[]{2, 4, 0}), (new int[]{3, 3, 3}), (new int[]{4, 4, 6}), (new int[]{3, 3, 3}));
+        return Stream.of((new int[]{3, 15, 0}), (new int[]{6,4, 3}), (new int[]{88, 3, -1}), (new int[]{3, 2, 1}));
     }
 
     @ParameterizedTest(name = "Array test  {0}")
